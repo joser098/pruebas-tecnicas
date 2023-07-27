@@ -1,12 +1,12 @@
 import { RootState } from "../redux/store";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Book from "./BookComponent";
 
 const ReadingList = () => {
   const readingList = useSelector((state: RootState) => state.book.libraryStorage.readingList);
 
   return (
-    <>
+    <section>
     <h2 className="text-violet font-bold bg-white" >READING LIST</h2>
       {readingList.map((books) => {
         return (
@@ -22,7 +22,7 @@ const ReadingList = () => {
           />
         );
       })}
-    </>
+    </section>
   );
 };
 

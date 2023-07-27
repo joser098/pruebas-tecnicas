@@ -5,12 +5,14 @@ import ReadingList from "./components/ReadingList";
 import { useSyncLocalStorage } from "./hooks/useSyncLocalStorage";
 
 function App() {
-  useSyncLocalStorage()
+  useSyncLocalStorage();
   return (
     <>
       <Header />
-      <Books />
-      <ReadingList />
+      <section className="flex ">
+        <Books />
+        <ReadingList />
+      </section>
     </>
   );
 }

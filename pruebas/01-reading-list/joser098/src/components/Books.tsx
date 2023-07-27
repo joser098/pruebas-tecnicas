@@ -1,17 +1,20 @@
 import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import Book from "./BookComponent";
+import { useFilters } from "../hooks/useFilters";
 
 const Books = () => {
   const availableBooks = useSelector(
     (state: RootState) => state.book.libraryStorage.availableBooks
   );
+  const { filterBooks } = useFilters()
+  const filteredBooks = filterBooks(availableBooks)
 
 
   return (
-    <>
+    <section>
       <h2 className="text-violet font-bold bg-white">AVAILABLE BOOKS</h2>
-      {availableBooks.map((books) => {
+      {filteredBooks.map((books) => {
         return (
           <Book
             title={books.title}
@@ -25,7 +28,7 @@ const Books = () => {
           />
         );
       })}
-    </>
+    </section>
   );
 };
 

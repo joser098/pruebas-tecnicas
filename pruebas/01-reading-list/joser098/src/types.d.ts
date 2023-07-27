@@ -2,6 +2,11 @@ export interface BooksState {
     libraryStorage: {
         availableBooks: Book[],
         readingList: Book[] 
+    },
+    genres: string[],
+    filters: {
+        pages: string,
+        genre: string
     }
 }
 
@@ -12,7 +17,7 @@ export interface Author {
 
 export interface Book {
     title: string,
-    pages: number,
+    pages: number, 
     genre: string,
     cover: string,
     synopsis: string,

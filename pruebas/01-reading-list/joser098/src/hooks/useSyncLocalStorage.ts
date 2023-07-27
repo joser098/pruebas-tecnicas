@@ -15,6 +15,9 @@ export const useSyncLocalStorage = () => {
         }
       }
     window.addEventListener('storage', onStorageChange)
-    
+
+    return () => {
+      window.removeEventListener('storage', onStorageChange)
+    }
   }, [])
 }
