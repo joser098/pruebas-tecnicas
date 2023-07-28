@@ -15,8 +15,8 @@ library.map((book): void => {
 
 const initialState: BooksState = {
   libraryStorage: {
-    availableBooks: JSON.parse(localStorage.getItem('availableBooks') || JSON.stringify(allBooks)),
-    readingList: JSON.parse(localStorage.getItem('readingList') || '[]')
+    availableBooks: [],
+    readingList: []
   },
   genres: genres,
   filters: {
@@ -30,12 +30,20 @@ export const booksSlice = createSlice({
   initialState,
   reducers: {
     syncStorage: (state, { payload }) => {
+      console.log(payload)
       state.libraryStorage = payload
     },
     addToReadingList: (state, { payload }: PayloadAction<string>) => {
-      const availablesUpdate = state.libraryStorage.availableBooks.filter((book: Book) => book.title !== payload);
+      const availablesUpdate: Book[] = state.libraryStorage.availableBooks.filter((book: Book) => book.title !== payload);
       const bookToAdd = state.libraryStorage.availableBooks.find((book : Book) => book.title === payload);
-      window.localStorage.setItem('libraryStorage', JSON.stringify({availableBooks: availablesUpdate, readingList: [...state.libraryStorage.readingList, bookToAdd]}));
+      // const prevState= [...state.libraryStorage.readingList, bookToAdd];
+      if(bookToAdd){
+        state.libraryStorage = {
+          availableBooks: availablesUpdate, 
+          readingList: [...state.libraryStorage.readingList, bookToAdd]
+        }
+      }
+      window.localStorage.setItem('libraryStorage', JSON.stringify({availableBooks: availablesUpdate, readingList: [...state.libraryStorage.readingList]}));
     },
     changePageFilter: (state, { payload }) => {
       state.filters.pages = payload 
@@ -43,7 +51,6 @@ export const booksSlice = createSlice({
     changeGenreFilter: (state, { payload }) => {
       state.filters.genre = payload
     }
-
   },
 });
 

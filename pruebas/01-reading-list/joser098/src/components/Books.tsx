@@ -12,9 +12,9 @@ const Books = () => {
 
 
   return (
-    <section>
+    <section className=" w-2/3">
       <h2 className="text-violet font-bold bg-white">AVAILABLE BOOKS</h2>
-      {filteredBooks.map((books) => {
+      {filteredBooks?.map((books) => {
         return (
           <Book
             title={books.title}

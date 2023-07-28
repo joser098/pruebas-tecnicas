@@ -8,7 +8,7 @@ export const useFilters = () => {
 
 
     const filterBooks = (books: Book[]) => {
-        return books.filter((book: Book) => {
+        return books?.filter((book: Book) => {
             return  (book.genre === filters.genre || filters.genre === "all") && book.pages >= filterPages
         })
     }

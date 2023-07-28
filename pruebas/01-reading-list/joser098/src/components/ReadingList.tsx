@@ -6,9 +6,9 @@ const ReadingList = () => {
   const readingList = useSelector((state: RootState) => state.book.libraryStorage.readingList);
 
   return (
-    <section>
+    <section className=" w-1/3 border-2 border-black">
     <h2 className="text-violet font-bold bg-white" >READING LIST</h2>
-      {readingList.map((books) => {
+      {readingList?.map((books) => {
         return (
           <Book
             title={books.title}
