@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import { Book, BooksState } from "../types";
 import { library } from "../../../books.json";
 
@@ -33,10 +32,9 @@ export const booksSlice = createSlice({
       console.log(payload)
       state.libraryStorage = payload
     },
-    addToReadingList: (state, { payload }: PayloadAction<string>) => {
+    addToReadingList: (state, { payload }) => {
       const availablesUpdate: Book[] = state.libraryStorage.availableBooks.filter((book: Book) => book.title !== payload);
       const bookToAdd = state.libraryStorage.availableBooks.find((book : Book) => book.title === payload);
-      // const prevState= [...state.libraryStorage.readingList, bookToAdd];
       if(bookToAdd){
         state.libraryStorage = {
           availableBooks: availablesUpdate, 
@@ -44,6 +42,17 @@ export const booksSlice = createSlice({
         }
       }
       window.localStorage.setItem('libraryStorage', JSON.stringify({availableBooks: availablesUpdate, readingList: [...state.libraryStorage.readingList]}));
+    },
+    removeFromReadingList: (state, { payload }) => {
+      const readingListUpdate: Book[] = state.libraryStorage.readingList.filter((book: Book) => book.title !== payload);
+      const bookToAdd = state.libraryStorage.readingList.find((book : Book) => book.title === payload);
+      if(bookToAdd){
+        state.libraryStorage = {
+          availableBooks: [bookToAdd, ...state.libraryStorage.availableBooks], 
+          readingList: readingListUpdate
+        }
+      }
+      window.localStorage.setItem('libraryStorage', JSON.stringify({availableBooks: [...state.libraryStorage.availableBooks], readingList: readingListUpdate}));
     },
     changePageFilter: (state, { payload }) => {
       state.filters.pages = payload 
@@ -54,6 +63,6 @@ export const booksSlice = createSlice({
   },
 });
 
-export const { syncStorage, addToReadingList, changePageFilter, changeGenreFilter } = booksSlice.actions;
+export const { syncStorage, addToReadingList, removeFromReadingList, changePageFilter, changeGenreFilter } = booksSlice.actions;
 
 export default booksSlice.reducer;
