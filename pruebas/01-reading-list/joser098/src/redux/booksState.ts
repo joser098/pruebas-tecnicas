@@ -20,8 +20,10 @@ const initialState: BooksState = {
   genres: genres,
   filters: {
       pages: '0',
-      genre: 'all'
-  }
+      genre: 'all',
+      title: ''
+  },
+  tabState: true
 };
 
 export const booksSlice = createSlice({
@@ -29,7 +31,6 @@ export const booksSlice = createSlice({
   initialState,
   reducers: {
     syncStorage: (state, { payload }) => {
-      console.log(payload)
       state.libraryStorage = payload
     },
     addToReadingList: (state, { payload }) => {
@@ -59,10 +60,16 @@ export const booksSlice = createSlice({
     },
     changeGenreFilter: (state, { payload }) => {
       state.filters.genre = payload
+    },
+    changeTitleFilter: (state, { payload }) => {
+      state.filters.title = payload 
+    },
+    setTab: (state) => {
+      state.tabState = !state.tabState
     }
   },
 });
 
-export const { syncStorage, addToReadingList, removeFromReadingList, changePageFilter, changeGenreFilter } = booksSlice.actions;
+export const { syncStorage, addToReadingList, removeFromReadingList, changePageFilter, changeGenreFilter, changeTitleFilter, setTab } = booksSlice.actions;
 
 export default booksSlice.reducer;

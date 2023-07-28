@@ -13,24 +13,32 @@ const Books = () => {
   const filteredBooks = filterBooks(availableBooks);
 
   return (
-    <section className="w-2/3">
-      <h2 className="text-violet font-bold bg-white">AVAILABLE BOOKS</h2>
-      {filteredBooks?.map((books) => {
-        return (
-          <button onClick={() => dispatch(addToReadingList(books.title))}>
-            <Book
-              title={books.title}
-              pages={books.pages}
-              genre={books.genre}
-              cover={books.cover}
-              synopsis={books.synopsis}
-              year={books.year}
-              ISBN={books.ISBN}
-              author={books.author}
-            />
+    <section className=" min-h-screen">
+
+      <h2 className="text-violet font-bold bg-white">
+        LIBROS DISPONIBLES ({filteredBooks.length})
+      </h2>
+
+      {filteredBooks.length == 0 ? (
+        <h2 className=" w-full ">NO HAY LIBROS DISPONIBLES</h2>
+      ) : (
+        filteredBooks?.map((books) => {
+          return (
+            <button onClick={() => dispatch(addToReadingList(books.title))}>
+              <Book
+                title={books.title}
+                pages={books.pages}
+                genre={books.genre}
+                cover={books.cover}
+                synopsis={books.synopsis}
+                year={books.year}
+                ISBN={books.ISBN}
+                author={books.author}
+              />
             </button>
-        );
-      })}
+          );
+        })
+      )}
     </section>
   );
 };

@@ -6,8 +6,10 @@ export interface BooksState {
     genres: string[],
     filters: {
         pages: string,
-        genre: string
-    }
+        genre: string,
+        title: string
+    },
+    tabState: boolean
 }
 
 export interface Author {

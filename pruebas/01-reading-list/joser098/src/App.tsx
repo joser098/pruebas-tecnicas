@@ -1,18 +1,22 @@
+import { useSelector } from "react-redux";
 import "./App.css";
 import Books from "./components/Books";
 import Header from "./components/Header";
 import ReadingList from "./components/ReadingList";
 import { useSyncLocalStorage } from "./hooks/useSyncLocalStorage";
+import { RootState } from "./redux/store";
 
 function App() {
   useSyncLocalStorage()
+  const tabState = useSelector((state: RootState) => state.book.tabState)
   
   return (
     <>
-      <Header />
+      <Header/>
       <section className="flex ">
-        <Books />
-        <ReadingList />
+        {
+          tabState ? <Books /> : <ReadingList />
+        }
       </section>
     </>
   );
