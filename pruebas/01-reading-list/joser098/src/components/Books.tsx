@@ -13,14 +13,14 @@ const Books = () => {
   const filteredBooks = filterBooks(availableBooks);
 
   return (
-    <section className=" min-h-screen">
+    <section className=" min-h-screen min-w-full">
 
       <h2 className="text-violet font-bold bg-white">
         LIBROS DISPONIBLES ({filteredBooks.length})
       </h2>
 
       {filteredBooks.length == 0 ? (
-        <h2 className=" w-full ">NO HAY LIBROS DISPONIBLES</h2>
+        <h2 className=" w-full text-7xl pt-10">NO HAY LIBROS DISPONIBLES</h2>
       ) : (
         filteredBooks?.map((books) => {
           return (

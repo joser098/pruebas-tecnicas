@@ -10,11 +10,13 @@ const ReadingList = () => {
   const dispatch = useDispatch();
 
   return (
-    <section className=" min-h-screen">
-      <h2 className="text-violet font-bold bg-white">LISTA DE LECTURA</h2>
-      {readingList?.map((books) => {
+    <section className=" min-h-screen min-w-full">
+      <h2 className="text-violet font-bold bg-white">LISTA DE LECTURA {readingList.length}</h2>
+      {readingList.length == 0 
+      ?  <h2 className=" w-full text-7xl pt-10">NO HAY LIBROS EN LA LISTA</h2>    
+      : readingList?.map((books) => {
         return (
-          <div>
+            <button onClick={() => dispatch(removeFromReadingList(books.title))}>
             <Book
               title={books.title}
               pages={books.pages}
@@ -25,9 +27,7 @@ const ReadingList = () => {
               ISBN={books.ISBN}
               author={books.author}
             />
-            <button onClick={() => dispatch(removeFromReadingList(books.title))}
-            >Quitar</button>
-          </div>
+            </button>
         );
       })}
     </section>

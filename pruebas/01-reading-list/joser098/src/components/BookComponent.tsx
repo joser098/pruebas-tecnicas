@@ -1,8 +1,7 @@
 import React from "react";
 import { Book } from "../types";
 
-const BookComponent: React.FC<Book> = ({ title, cover,}) => {
-
+const BookComponent: React.FC<Book> = ({ title, cover }) => {
 
   return (
     <main className="inline-block p-3 " >
