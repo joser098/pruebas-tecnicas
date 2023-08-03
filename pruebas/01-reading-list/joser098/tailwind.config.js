@@ -5,6 +5,9 @@ export default {
     extend: {
       colors: {
         'violet': '#4C5FD5'
+      },
+      screens: {
+        'mobile': {'max': '850px'}
       }
     },
   },

@@ -24,31 +24,40 @@ const Filters = () => {
   };
 
   const handleTitleChange = (event: any) => {
-    dispatch(changeTitleFilter (event.target.value));
-    console.log(event.target.value)
+    dispatch(changeTitleFilter(event.target.value));
+    console.log(event.target.value);
   };
 
   return (
-    <div className="flex h-8 items-center justify-around p-6">
-        <input onChange={handleTitleChange} className="h-8 rounded-sm focus:border-violet w-52" type="text" placeholder="Buscar por titulo" />
+    <div className="flex items-center justify-around p-6 mobile:flex-col">
+      <input
+        onChange={handleTitleChange}
+        className="h-8 rounded-sm focus:border-violet w-52 mobile:mb-3"
+        type="text"
+        placeholder="Buscar por titulo"
+      />
 
-      <div className="flex items-center">
+      <div className="flex items-center mobile:mb-3">
         <label className="text-white mr-2">Minimo de: </label>
         <input onChange={handlePagesChange} type="range" min="0" max="1000" />
         <label className="text-white ml-2"> {numPagesFiltered} Paginas</label>
       </div>
-      <select onChange={handleGenreChange} name="genres" className="h-8 rounded-sm cursor-pointer">
+      <select
+        onChange={handleGenreChange}
+        name="genres"
+        className="h-8 rounded-sm cursor-pointer mobile:mb-3"
+      >
         <option value="all">All</option>
         {genres.map((genre: string) => {
           return <option value={genre}>{genre}</option>;
         })}
       </select>
-        <button
-          className="text-black bg-white font-semibold px-2 py-1 rounded-sm hover:bg-violet hover:text-white transition-colors h-8 cursor-pointer"
-          onClick={() => dispatch(setTab())}
-        >
-          {tabState ? "Lista de lectura" : "Libros"}
-        </button>
+      <button
+        className="text-black bg-white font-semibold px-2 py-1 rounded-sm hover:bg-violet hover:text-white transition-colors h-8 cursor-pointer"
+        onClick={() => dispatch(setTab())}
+      >
+        {tabState ? "Lista de lectura" : "Libros"}
+      </button>
     </div>
   );
 };

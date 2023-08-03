@@ -20,7 +20,7 @@ const Books = () => {
       </h2>
 
       {filteredBooks.length == 0 ? (
-        <h2 className=" w-full text-7xl pt-10">NO HAY LIBROS DISPONIBLES</h2>
+        <h2 className=" w-full text-7xl pt-10 mobile:text-lg">NO HAY LIBROS DISPONIBLES</h2>
       ) : (
         filteredBooks?.map((books) => {
           return (
