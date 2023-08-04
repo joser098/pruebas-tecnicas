@@ -11,7 +11,7 @@ const ReadingList = () => {
 
   return (
     <section className=" min-h-screen min-w-full">
-      <h2 className="text-violet font-bold bg-white">LISTA DE LECTURA {readingList.length}</h2>
+      <h2 className="text-violet font-bold bg-white">LISTA DE LECTURA ({readingList.length})</h2>
       {readingList.length == 0 
       ?  <h2 className=" w-full text-7xl pt-10 mobile:text-lg">NO HAY LIBROS EN LA LISTA</h2>    
       : readingList?.map((books) => {
